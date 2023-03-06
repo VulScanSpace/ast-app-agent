@@ -46,13 +46,14 @@ jobs:
         uses: stCarolas/setup-maven@v4
         with:
           maven-version: 3.2.5
-      - name: 'Checkout Repository'
-        uses: actions/checkout@v3
 
   build-and-deploy-ast-app:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
       - name: Build Ast App
         run: |
           echo "current dir: $(pwd)"
