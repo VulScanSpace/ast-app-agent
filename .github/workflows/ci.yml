@@ -1,0 +1,50 @@
+name: Ast App Build
+
+on:
+  push:
+    branches:
+      - "main"
+    paths-ignore:
+      #      - '.github/**'
+      - '**.yml'
+      - '**.xml'
+      - '**.md'
+      - 'LICENSE'
+      - '.gitignore'
+
+# The API requires write permission on the repository to submit dependencies
+permissions:
+  contents: write
+
+# Environment variables to configure Go and Go modules. Customize as necessary
+env:
+  GOPROXY: '' # A Go Proxy server to be used
+  GOPRIVATE: '' # A list of modules are considered private and not requested from GOPROXY
+
+concurrency:
+  group: dlc-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout Repository'
+        uses: actions/checkout@v3
+
+      - uses: actions/setup-go@v3
+        with:
+          go-version: ">=1.18.0"
+
+  build-and-deploy-ast-app:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build Ast App
+        run: bash build/ci/scripts/ci.sh
+
+      - name: Build RPM
+        uses: naveenrajm7/rpmbuild@master
+        with:
+          spec_file: "build/ci/config/ast-app-agent.spec"
+

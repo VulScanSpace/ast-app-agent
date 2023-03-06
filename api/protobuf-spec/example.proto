@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package ast_app_agent;
+option go_package = "pb/heartbeat"; //包名
+
+service Heartbeat{
+  rpc send(HeartBeatRequest) returns (HeartBeatResponse){}
+}
+
+message HeartBeatRequest {
+  string machineId = 1;
+  int32 javaProcessSize = 2;
+  int32 aliveAgentSize = 3;
+  string status = 4;
+  string reason = 5;
+}
+
+message HeartBeatResponse {
+  int32 code = 1;
+}
