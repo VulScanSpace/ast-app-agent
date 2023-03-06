@@ -1,4 +1,8 @@
 %define _prefix    /opt/ast-app
+%define _user      root
+%define _user_uid  0
+%define _group     root
+%define _group_uid 0
 
 Name:		ast-app-agent
 Version:    0.1.0
@@ -28,7 +32,19 @@ rm -rf %{_prefix}
 rm -rf $RPM_BUILD_DIR/%{name}-%{version}
 
 %files
-%attr(-,root,root) %{_prefix}/*
+%attr(-,_user,_group,-)
+%dir %{_prefix}/
+%dir %{_prefix}/bin
+%dir %{_prefix}/libs
+%dir %{_prefix}/logs
+%{_prefix}/bin/ast-app-agent-linux
+%{_prefix}/bin/jattach-linux
+%{_prefix}/libs/ast-agent.jar
+%{_prefix}/libs/ast-spy.jar
+%{_prefix}/libs/ast-servlet.jar
+%{_prefix}/libs/ast-http-client.jar
+%{_prefix}/libs/iast-engine.jar
+%{_prefix}/libs/rasp-engine.jar
 
 %changelog
 * Mon Mar 20 2023 owefsad <owefsad@gmail.com>
