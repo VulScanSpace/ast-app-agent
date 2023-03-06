@@ -21,7 +21,7 @@ type Inject struct{}
 
 func init() {
 	currentDir, _ := os.Getwd()
-	IastCmd = fmt.Sprintf("\"javaagent:%s=%s&%s\"", path.Join(currentDir, "..", "libs", "ast-agent.jar"), path.Join(currentDir, "..", "libs", "ast-iast-engine.jar"), "INSTALL")
+	IastCmd = fmt.Sprintf("%s=%s&%s", path.Join(currentDir, "..", "libs", "ast-agent.jar"), path.Join(currentDir, "..", "libs", "ast-iast-engine.jar"), "INSTALL")
 	waitingInjectedPid = map[string]int64{}
 	injectedPid = map[string]bool{}
 	// Timeout TODO read timeout from config or remote api

@@ -1,16 +1,16 @@
-on:
-  pull_request:
-    paths-ignore:
-      - '.github/**'
-      - '**.yml'
-      - '**.xml'
-      - 'LICENSE'
-      - '.gitignore'
-  push:
-    paths-ignore:
-      - '.github/**'
-      - '**.yml'
-      - '**.xml'
-      - 'LICENSE'
-      - '.gitignore'
-
+#on:
+#  pull_request:
+#    paths-ignore:
+#      - '.github/**'
+#      - '**.yml'
+#      - '**.xml'
+#      - 'LICENSE'
+#      - '.gitignore'
+#  push:
+#    paths-ignore:
+#      - '.github/**'
+#      - '**.yml'
+#      - '**.xml'
+#      - 'LICENSE'
+#      - '.gitignore'
+#
