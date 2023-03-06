@@ -29,9 +29,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: 'Checkout Repository'
-        uses: actions/checkout@v3
-
       - uses: actions/setup-go@v3
         with:
           go-version: ">=1.18.0"
@@ -49,13 +46,18 @@ jobs:
         uses: stCarolas/setup-maven@v4
         with:
           maven-version: 3.2.5
+      - name: 'Checkout Repository'
+        uses: actions/checkout@v3
 
   build-and-deploy-ast-app:
     needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Build Ast App
-        run: bash build/ci/scripts/ci.sh
+        run: |
+          echo "current dir: $(pwd)"
+          ls
+          bash build/ci/scripts/ci.sh
 
       - name: Build RPM
         uses: naveenrajm7/rpmbuild@master
