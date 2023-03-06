@@ -18,3 +18,4 @@
 .idea/
 
 build/ci/bin
+build/ci/libs

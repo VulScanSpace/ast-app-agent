@@ -21,7 +21,7 @@ type Inject struct{}
 
 func init() {
 	currentDir, _ := os.Getwd()
-	IastCmd = fmt.Sprintf("-javaagent:%s=%s&%s", path.Join(currentDir, "libs", "ast-agent.jar"), path.Join(currentDir, "libs", "ast-iast-engine.jar"), "INSTALL")
+	IastCmd = fmt.Sprintf("\"javaagent:%s=%s&%s\"", path.Join(currentDir, "..", "libs", "ast-agent.jar"), path.Join(currentDir, "..", "libs", "ast-iast-engine.jar"), "INSTALL")
 	waitingInjectedPid = map[string]int64{}
 	injectedPid = map[string]bool{}
 	// Timeout TODO read timeout from config or remote api
@@ -29,13 +29,13 @@ func init() {
 	switch CurrentOs {
 	case Windows:
 		// TODO add arch check
-		JAttach = "/opt/ast-app/bin/jattach-windows.exe"
+		JAttach = path.Join(currentDir, "jattach-windows.exe")
 		break
 	case Linux:
-		JAttach = "/opt/ast-app/bin/jattach-linux"
+		JAttach = path.Join(currentDir, "jattach-linux")
 		break
 	case Darwin:
-		JAttach = "/opt/ast-app/bin/jattach-darwin"
+		JAttach = path.Join(currentDir, "jattach-darwin")
 	}
 }
 
