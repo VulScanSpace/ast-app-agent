@@ -28,6 +28,8 @@ generateRpmSource() {
   echo "finished generate rpm source file..."
 }
 
+
+
 build
 buildAstApp
 generateRpmSource
