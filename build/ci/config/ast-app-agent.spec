@@ -40,8 +40,6 @@ cp /tmp/ast-spy.jar %{_sourcedir}
 
 # 安装步骤,此时需要指定安装路径，创建编译时自动生成目录，复制配置文件至所对应的目录中
 %install
-echo %buildroot
-rm -rf %{buildroot}
 %{__install} -p -D -m 0755 %{_sourcedir}/ast-app-agent %{buildroot}/bin/ast-app-agent
 %{__install} -p -D -m 0755 %{_sourcedir}/jattach-linux %{buildroot}/bin/jattach-linux
 %{__install} -p -D %{_sourcedir}/ast-agent.jar %{buildroot}/libs/ast-agent.jar
