@@ -30,8 +30,6 @@ ast-app-agent is a agent of ast-app, used to monitor linux machine、install ias
 
 # 编译参数 ./configure --user=nginx --group=nginx --prefix=/usr/local/nginx/……
 %build
-cp /tmp/ast-app-agent %{_sourcedir}
-curl -sL -o "%{_sourcedir}/jattach-linux" "https://github.com/jattach/jattach/releases/download/$(curl -sL 'https://api.github.com/repos/jattach/jattach/releases/latest' | grep -E 'tag_name\": \"' | head -n 1 | tr -d 'tag_name\": ' | tr -d ',')/jattach"
 cp /tmp/%{Source0} %{_sourcedir}
 cp /tmp/%{Source1} %{_sourcedir}
 cp /tmp/%{Source2} %{_sourcedir}
@@ -39,6 +37,7 @@ cp /tmp/%{Source3} %{_sourcedir}
 cp /tmp/%{Source4} %{_sourcedir}
 cp /tmp/%{Source5} %{_sourcedir}
 cp /tmp/%{Source6} %{_sourcedir}
+cp /tmp/%{Source7} %{_sourcedir}
 
 # 安装步骤,此时需要指定安装路径，创建编译时自动生成目录，复制配置文件至所对应的目录中
 %install
