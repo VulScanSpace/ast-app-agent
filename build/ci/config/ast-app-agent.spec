@@ -30,7 +30,10 @@ ast-app-agent is a agent of ast-app, used to monitor linux machine、install ias
 
 # 编译参数 ./configure --user=nginx --group=nginx --prefix=/usr/local/nginx/……
 %build
-echo "/tmp/%{source0}"
+ls -l
+ls -l /home/runner/
+ls -l /home/runner/rpmbuild
+ls -l /home/runner/rpmbuild/BUILD
 cp /tmp/ast-app-agent %{_sourcedir}
 cp /tmp/jattach-linux %{_sourcedir}
 cp /tmp/ast-agent.jar %{_sourcedir}
@@ -45,14 +48,14 @@ ls -l %{_sourcedir}
 %install
 echo %buildroot
 rm -rf %{buildroot}
-%{__install} -p -D -m 0755 %{_sourcedir}/ast-app-agent %{buildroot}/bin/ast-app-agent
-%{__install} -p -D -m 0755 %{_sourcedir}/jattach-linux %{buildroot}/bin/jattach-linux
-%{__install} -p -D %{_sourcedir}/ast-agent.jar %{buildroot}/libs/ast-agent.jar
-%{__install} -p -D %{_sourcedir}/ast-http-client.jar %{buildroot}/libs/ast-http-client.jar
-%{__install} -p -D %{_sourcedir}/ast-iast-engine.jar %{buildroot}/libs/ast-iast-engine.jar
-%{__install} -p -D %{_sourcedir}/ast-rasp-engine.jar %{buildroot}/libs/ast-rasp-engine.jar
-%{__install} -p -D %{_sourcedir}/ast-servlet.jar %{buildroot}/libs/ast-servlet.jar
-%{__install} -p -D %{_sourcedir}/ast-spy.jar %{buildroot}/libs/ast-spy.jar
+%{__install} -p -D -m 0755 /tmp/ast-app-agent %{buildroot}/bin/ast-app-agent
+%{__install} -p -D -m 0755 /tmp/jattach-linux %{buildroot}/bin/jattach-linux
+%{__install} -p -D /tmp/ast-agent.jar %{buildroot}/libs/ast-agent.jar
+%{__install} -p -D /tmp/ast-http-client.jar %{buildroot}/libs/ast-http-client.jar
+%{__install} -p -D /tmp/ast-iast-engine.jar %{buildroot}/libs/ast-iast-engine.jar
+%{__install} -p -D /tmp/ast-rasp-engine.jar %{buildroot}/libs/ast-rasp-engine.jar
+%{__install} -p -D /tmp/ast-servlet.jar %{buildroot}/libs/ast-servlet.jar
+%{__install} -p -D /tmp/ast-spy.jar %{buildroot}/libs/ast-spy.jar
 
 # 安装前需要做的任务，如：创建用户
 %pre
