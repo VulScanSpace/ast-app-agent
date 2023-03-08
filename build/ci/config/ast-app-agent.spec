@@ -76,11 +76,9 @@ rm -rf %{_prefix}
 rm -rf $RPM_BUILD_DIR/%{name}-%{version}
 
 %files
-%attr(-,_user,_group,-)
 %dir %{_prefix}/
 %dir %{_prefix}/bin
 %dir %{_prefix}/libs
-%dir %{_prefix}/logs
 %{_prefix}/bin/ast-app-agent-linux
 %{_prefix}/bin/jattach-linux
 %{_prefix}/libs/ast-agent.jar
