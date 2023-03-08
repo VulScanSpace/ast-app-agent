@@ -24,21 +24,41 @@ Source7: 	jattach-linux
 %description
 ast-app-agent is a agent of ast-app, used to monitor linux machine、install iast/sca/rasp to java process and upload report.
 
+# 预备参数，通常为 %setup -q
 %prep
-rm -rf %{_prefix}/*
 
+
+# 编译参数 ./configure --user=nginx --group=nginx --prefix=/usr/local/nginx/……
+%build
+cp /tmp/ast-app-agent %{_sourcedir}/%{Source0}
+cp /tmp/*.jar %{_sourcedir}/
+curl -sL -o "%{_sourcedir}/jattach-linux" "https://github.com/jattach/jattach/releases/download/$(curl -sL "https://api.github.com/repos/jattach/jattach/releases/latest" | grep -E 'tag_name\": \"' | head -n 1 | tr -d 'tag_name\": ' | tr -d ',')/jattach"
+
+# 安装步骤,此时需要指定安装路径，创建编译时自动生成目录，复制配置文件至所对应的目录中
 %install
 echo %buildroot
 rm -rf %{buildroot}
-%{__install} -p -D -m 0755 %{_builddir}/%{Source0} %{buildroot}/bin/ast-app-agent
-%{__install} -p -D -m 0755 %{_builddir}/%{Source7} %{buildroot}/bin/jattach-linux
-%{__install} -p -D %{_builddir}/%{Source1} %{buildroot}/libs/ast-agent.jar
-%{__install} -p -D %{_builddir}/%{Source2} %{buildroot}/bin/ast-http-client.jar
-%{__install} -p -D %{_builddir}/%{Source3} %{buildroot}/bin/ast-iast-engine.jar
-%{__install} -p -D %{_builddir}/%{Source4} %{buildroot}/bin/ast-rasp-engine.jar
-%{__install} -p -D %{_builddir}/%{Source5} %{buildroot}/bin/ast-servlet.jar
-%{__install} -p -D %{_builddir}/%{Source6} %{buildroot}/bin/ast-spy.jar
+%{__install} -p -D -m 0755 %{_sourcedir}/%{Source0} %{buildroot}/bin/ast-app-agent
+%{__install} -p -D -m 0755 %{_sourcedir}/%{Source7} %{buildroot}/bin/jattach-linux
+%{__install} -p -D %{_sourcedir}/%{Source1} %{buildroot}/libs/ast-agent.jar
+%{__install} -p -D %{_sourcedir}/%{Source2} %{buildroot}/libs/ast-http-client.jar
+%{__install} -p -D %{_sourcedir}/%{Source3} %{buildroot}/libs/ast-iast-engine.jar
+%{__install} -p -D %{_sourcedir}/%{Source4} %{buildroot}/libs/ast-rasp-engine.jar
+%{__install} -p -D %{_sourcedir}/%{Source5} %{buildroot}/libs/ast-servlet.jar
+%{__install} -p -D %{_sourcedir}/%{Source6} %{buildroot}/libs/ast-spy.jar
 
+# 安装前需要做的任务，如：创建用户
+%pre
+rm -rf %{_prefix}/*
+
+# 安装后需要做的任务 如：自动启动的任务
+%post
+
+# 卸载前需要做的任务 如：停止任务
+%preun
+ps aux | grep -v grep | grep ast-app-agent | awk '{$2}' | xargs -I {} kill -9 {}
+
+#
 %postun
 ps aux | grep -v grep | grep ast-app-agent-linux | xargs -I {} kill -9 {}
 rm -rf /tmp/ast-app-agent.sock

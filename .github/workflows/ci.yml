@@ -75,10 +75,6 @@ jobs:
         run: |
           echo "current dir: $(pwd)"
           sudo apt-get install rpm
-          mkdir -p {BUILD,RPMS,SOURCES,SPECS,SRPMS}
-          cp /tmp/ast-app-agent SOURCES
-          cp /tmp/*.jar SOURCES
-          curl -sL -o "SOURCES/jattach-linux" "https://github.com/jattach/jattach/releases/download/$(curl -sL "https://api.github.com/repos/jattach/jattach/releases/latest" | grep -E 'tag_name\": \"' | head -n 1 | tr -d 'tag_name\": ' | tr -d ',')/jattach"
           cp build/ci/config/ast-app-agent.spec SPECS/
           ls SOURCES
           rpmbuild -ba SPECS/ast-app-agent.spec
