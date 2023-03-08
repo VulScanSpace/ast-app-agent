@@ -56,7 +56,7 @@ jobs:
 
       - name: Build Ast App
         run: |
-          bash /home/runner/work/ast-app-agent/ast-app-agent/build/ci/scripts/ci.sh astApp
+          make build
 
       - name: Checkout Ast-Framework Repository
         uses: actions/checkout@v3
@@ -66,14 +66,13 @@ jobs:
 
       - name: Build Ast Framework
         run: |
-          bash /home/runner/work/ast-app-agent/ast-app-agent/build/ci/scripts/ci.sh astFramework
+          mvn -B -DskipTests clean package
           ls libs
 
       - name: Build Ast-Agent RPM
         run: |
           echo "current dir: $(pwd)"
-          ls
-          bash /home/runner/work/ast-app-agent/ast-app-agentbuild/ci/scripts/ci.sh rpm
+          ls /home/runner/
 
       - name: Build RPM
         uses: naveenrajm7/rpmbuild@master
