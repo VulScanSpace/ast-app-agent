@@ -85,8 +85,8 @@ rm -rf $RPM_BUILD_DIR/%{name}-%{version}
 %{_prefix}/libs/ast-spy.jar
 %{_prefix}/libs/ast-servlet.jar
 %{_prefix}/libs/ast-http-client.jar
-%{_prefix}/libs/iast-engine.jar
-%{_prefix}/libs/rasp-engine.jar
+%{_prefix}/libs/ast-iast-engine.jar
+%{_prefix}/libs/ast-rasp-engine.jar
 
 %changelog
 * Mon Mar 20 2023 owefsad <owefsad@gmail.com>
