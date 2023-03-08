@@ -57,6 +57,7 @@ jobs:
       - name: Build Ast App
         run: |
           make build
+          cp build/ci/bin/ast-app-agent /tmp/ast-app-agent
 
       - name: Checkout Ast-Framework Repository
         uses: actions/checkout@v3
@@ -67,14 +68,10 @@ jobs:
       - name: Build Ast Framework
         run: |
           mvn -B -DskipTests clean package
-          ls libs
+          cp libs/* /tmp/
+          ls /tmp
 
       - name: Build Ast-Agent RPM
         run: |
           echo "current dir: $(pwd)"
-          ls /home/runner/
-
-      - name: Build RPM
-        uses: naveenrajm7/rpmbuild@master
-        with:
-          spec_file: "build/ci/config/ast-app-agent.spec"
+          ls /tmp
