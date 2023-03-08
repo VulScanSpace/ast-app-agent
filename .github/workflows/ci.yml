@@ -70,7 +70,7 @@ jobs:
         run: |
           make build
           cp build/ci/bin/ast-app-agent /tmp/ast-app-agent
-          curl -sL -o "/tmp/jattach-linux" "https://github.com/jattach/jattach/releases/download/$(curl -sL 'https://api.github.com/repos/jattach/jattach/releases/latest' | grep -E 'tag_name\": \"' | head -n 1 | tr -d 'tag_name\": ' | tr -d ',')/jattach"
+          curl -sL -o "/tmp/jattach" "https://github.com/jattach/jattach/releases/download/$(curl -sL 'https://api.github.com/repos/jattach/jattach/releases/latest' | grep -E 'tag_name\": \"' | head -n 1 | tr -d 'tag_name\": ' | tr -d ',')/jattach"
 
       - name: Build Ast-Agent RPM
         run: |

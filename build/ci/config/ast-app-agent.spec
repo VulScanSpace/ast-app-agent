@@ -19,7 +19,7 @@ Source3: 	ast-iast-engine.jar
 Source4: 	ast-rasp-engine.jar
 Source5: 	ast-servlet.jar
 Source6: 	ast-spy.jar
-Source7: 	jattach-linux
+Source7: 	jattach
 
 %description
 ast-app-agent is a agent of ast-app, used to monitor linux machine、install iast/sca/rasp to java process and upload report.
@@ -31,7 +31,7 @@ ast-app-agent is a agent of ast-app, used to monitor linux machine、install ias
 %build
 ls -l /home/runner/rpmbuild
 cp /tmp/ast-app-agent %{_sourcedir}/
-cp /tmp/jattach-linux %{_sourcedir}/
+cp /tmp/jattach %{_sourcedir}/
 cp /tmp/ast-agent.jar %{_sourcedir}/
 cp /tmp/ast-http-client.jar %{_sourcedir}/
 cp /tmp/ast-iast-engine.jar %{_sourcedir}/
@@ -46,7 +46,7 @@ ls -l %{_sourcedir}
 stat %{_sourcedir}
 ls -l %{_sourcedir}
 %{__install} -p -D -m 0755 %{_sourcedir}/ast-app-agent %{buildroot}/bin/ast-app-agent
-%{__install} -p -D -m 0755 %{_sourcedir}/jattach-linux %{buildroot}/bin/jattach-linux
+%{__install} -p -D -m 0755 %{_sourcedir}/jattach %{buildroot}/bin/jattach
 %{__install} -p -D %{_sourcedir}/ast-agent.jar %{buildroot}/libs/ast-agent.jar
 %{__install} -p -D %{_sourcedir}/ast-http-client.jar %{buildroot}/libs/ast-http-client.jar
 %{__install} -p -D %{_sourcedir}/ast-iast-engine.jar %{buildroot}/libs/ast-iast-engine.jar
@@ -67,7 +67,7 @@ ps aux | grep -v grep | grep ast-app-agent | awk '{$2}' | xargs -I {} kill -9 {}
 
 #
 %postun
-ps aux | grep -v grep | grep ast-app-agent-linux | xargs -I {} kill -9 {}
+ps aux | grep -v grep | grep ast-app-agent | xargs -I {} kill -9 {}
 rm -rf /tmp/ast-app-agent.sock
 rm -rf %{_prefix}
 
@@ -79,8 +79,8 @@ rm -rf $RPM_BUILD_DIR/%{name}-%{version}
 %dir %{_prefix}/
 %dir %{_prefix}/bin
 %dir %{_prefix}/libs
-%{_prefix}/bin/ast-app-agent-linux
-%{_prefix}/bin/jattach-linux
+%{_prefix}/bin/ast-app-agent
+%{_prefix}/bin/jattach
 %{_prefix}/libs/ast-agent.jar
 %{_prefix}/libs/ast-spy.jar
 %{_prefix}/libs/ast-servlet.jar
