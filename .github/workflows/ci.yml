@@ -58,13 +58,25 @@ jobs:
         run: |
           echo "current dir: $(pwd)"
           ls
-          make ~/.ssh
-          echo "$REPO_CI_ID_RSA" > ~/.ssh/id_rsa
-          echo "$REPO_CI_ID_RSA_PUB" > ~/.ssh/id_rsa.pub
-          bash build/ci/scripts/ci.sh
-#        with:
-#          id-rsa: ${{ secrets.$REPO_CI_ID_RSA }}
-#          id-rsa-pub: ${{ secrets.$REPO_CI_ID_RSA_PUB }}
+          bash build/ci/scripts/ci.sh astApp
+
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          repository: "VulScanSpace/AST-Framework"
+          token: ${{ secrets.VulScanSpaceTokenForClonePrivateRepo }}
+
+      - name: Build Ast Framework
+        run: |
+          echo "current dir: $(pwd)"
+          ls
+          bash build/ci/scripts/ci.sh astFramework
+          
+      - name: Build Ast RPM
+        run: |
+          echo "current dir: $(pwd)"
+          ls
+          bash build/ci/scripts/ci.sh rpm
 
       - name: Build RPM
         uses: naveenrajm7/rpmbuild@master

