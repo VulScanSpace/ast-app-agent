@@ -30,14 +30,15 @@ ast-app-agent is a agent of ast-app, used to monitor linux machine、install ias
 
 # 编译参数 ./configure --user=nginx --group=nginx --prefix=/usr/local/nginx/……
 %build
-cp /tmp/%{Source0} %{_sourcedir}
-cp /tmp/%{Source1} %{_sourcedir}
-cp /tmp/%{Source2} %{_sourcedir}
-cp /tmp/%{Source3} %{_sourcedir}
-cp /tmp/%{Source4} %{_sourcedir}
-cp /tmp/%{Source5} %{_sourcedir}
-cp /tmp/%{Source6} %{_sourcedir}
-cp /tmp/%{Source7} %{_sourcedir}
+echo "/tmp/%{source0}"
+cp /tmp/%{source0} %{_sourcedir}
+cp /tmp/%{source1} %{_sourcedir}
+cp /tmp/%{source2} %{_sourcedir}
+cp /tmp/%{source3} %{_sourcedir}
+cp /tmp/%{source4} %{_sourcedir}
+cp /tmp/%{source5} %{_sourcedir}
+cp /tmp/%{source6} %{_sourcedir}
+cp /tmp/%{source7} %{_sourcedir}
 
 # 安装步骤,此时需要指定安装路径，创建编译时自动生成目录，复制配置文件至所对应的目录中
 %install
