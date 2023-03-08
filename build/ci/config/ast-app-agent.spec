@@ -28,15 +28,16 @@ ast-app-agent is a agent of ast-app, used to monitor linux machine、install ias
 rm -rf %{_prefix}/*
 
 %install
+echo %buildroot
 rm -rf %{buildroot}
-%{__install} -p -D -m 0755 %{Source0} %{_prefix}/bin/ast-app-agent
-%{__install} -p -D -m 0755 %{Source7} %{_prefix}/bin/jattach-linux
-%{__install} -p -D %{Source1} %{_prefix}/libs/ast-agent.jar
-%{__install} -p -D %{Source2} %{_prefix}/bin/ast-http-client.jar
-%{__install} -p -D %{Source3} %{_prefix}/bin/ast-iast-engine.jar
-%{__install} -p -D %{Source4} %{_prefix}/bin/ast-rasp-engine.jar
-%{__install} -p -D %{Source5} %{_prefix}/bin/ast-servlet.jar
-%{__install} -p -D %{Source6} %{_prefix}/bin/ast-spy.jar
+%{__install} -p -D -m 0755 %{_builddir}/%{Source0} %{buildroot}/bin/ast-app-agent
+%{__install} -p -D -m 0755 %{_builddir}/%{Source7} %{buildroot}/bin/jattach-linux
+%{__install} -p -D %{_builddir}/%{Source1} %{buildroot}/libs/ast-agent.jar
+%{__install} -p -D %{_builddir}/%{Source2} %{buildroot}/bin/ast-http-client.jar
+%{__install} -p -D %{_builddir}/%{Source3} %{buildroot}/bin/ast-iast-engine.jar
+%{__install} -p -D %{_builddir}/%{Source4} %{buildroot}/bin/ast-rasp-engine.jar
+%{__install} -p -D %{_builddir}/%{Source5} %{buildroot}/bin/ast-servlet.jar
+%{__install} -p -D %{_builddir}/%{Source6} %{buildroot}/bin/ast-spy.jar
 
 %postun
 ps aux | grep -v grep | grep ast-app-agent-linux | xargs -I {} kill -9 {}
