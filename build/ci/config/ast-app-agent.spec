@@ -33,7 +33,12 @@ ast-app-agent is a agent of ast-app, used to monitor linux machine、install ias
 echo "/tmp/%{source0}"
 cp /tmp/ast-app-agent %{_sourcedir}
 cp /tmp/jattach-linux %{_sourcedir}
-cp /tmp/*.jar %{_sourcedir}
+cp /tmp/ast-agent.jar %{_sourcedir}
+cp /tmp/ast-http-client.jar %{_sourcedir}
+cp /tmp/ast-iast-engine.jar %{_sourcedir}
+cp /tmp/ast-rasp-engine.jar %{_sourcedir}
+cp /tmp/ast-servlet.jar %{_sourcedir}
+cp /tmp/ast-spy.jar %{_sourcedir}
 
 # 安装步骤,此时需要指定安装路径，创建编译时自动生成目录，复制配置文件至所对应的目录中
 %install
