@@ -31,27 +31,22 @@ ast-app-agent is a agent of ast-app, used to monitor linux machine、install ias
 # 编译参数 ./configure --user=nginx --group=nginx --prefix=/usr/local/nginx/……
 %build
 echo "/tmp/%{source0}"
-cp /tmp/%{source0} %{_sourcedir}
-cp /tmp/%{source1} %{_sourcedir}
-cp /tmp/%{source2} %{_sourcedir}
-cp /tmp/%{source3} %{_sourcedir}
-cp /tmp/%{source4} %{_sourcedir}
-cp /tmp/%{source5} %{_sourcedir}
-cp /tmp/%{source6} %{_sourcedir}
-cp /tmp/%{source7} %{_sourcedir}
+cp /tmp/ast-app-agent %{_sourcedir}
+cp /tmp/jattach-linux %{_sourcedir}
+cp /tmp/*.jar %{_sourcedir}
 
 # 安装步骤,此时需要指定安装路径，创建编译时自动生成目录，复制配置文件至所对应的目录中
 %install
 echo %buildroot
 rm -rf %{buildroot}
-%{__install} -p -D -m 0755 %{_sourcedir}/%{Source0} %{buildroot}/bin/ast-app-agent
-%{__install} -p -D -m 0755 %{_sourcedir}/%{Source7} %{buildroot}/bin/jattach-linux
-%{__install} -p -D %{_sourcedir}/%{Source1} %{buildroot}/libs/ast-agent.jar
-%{__install} -p -D %{_sourcedir}/%{Source2} %{buildroot}/libs/ast-http-client.jar
-%{__install} -p -D %{_sourcedir}/%{Source3} %{buildroot}/libs/ast-iast-engine.jar
-%{__install} -p -D %{_sourcedir}/%{Source4} %{buildroot}/libs/ast-rasp-engine.jar
-%{__install} -p -D %{_sourcedir}/%{Source5} %{buildroot}/libs/ast-servlet.jar
-%{__install} -p -D %{_sourcedir}/%{Source6} %{buildroot}/libs/ast-spy.jar
+%{__install} -p -D -m 0755 %{_sourcedir}/ast-app-agent %{buildroot}/bin/ast-app-agent
+%{__install} -p -D -m 0755 %{_sourcedir}/jattach-linux %{buildroot}/bin/jattach-linux
+%{__install} -p -D %{_sourcedir}/ast-agent.jar %{buildroot}/libs/ast-agent.jar
+%{__install} -p -D %{_sourcedir}/ast-http-client.jar %{buildroot}/libs/ast-http-client.jar
+%{__install} -p -D %{_sourcedir}/ast-iast-engine.jar %{buildroot}/libs/ast-iast-engine.jar
+%{__install} -p -D %{_sourcedir}/ast-rasp-engine.jar %{buildroot}/libs/ast-rasp-engine.jar
+%{__install} -p -D %{_sourcedir}/ast-servlet.jar %{buildroot}/libs/ast-servlet.jar
+%{__install} -p -D %{_sourcedir}/ast-spy.jar %{buildroot}/libs/ast-spy.jar
 
 # 安装前需要做的任务，如：创建用户
 %pre
