@@ -45,7 +45,7 @@ ls -l %{_sourcedir}
 %install
 stat %{_sourcedir}
 ls -l %{_sourcedir}
-%{__install} -p -D -m 0755 %{_sourcedir}/ast-app-agent %{buildroot}%{_prefix}/bin/ast-app-agent
+%{__install} -p -D -m 0755 %{_sourcedir}/%{source0} %{buildroot}%{_prefix}/bin/ast-app-agent
 %{__install} -p -D -m 0755 %{_sourcedir}/jattach %{buildroot}%{_prefix}/bin/jattach
 %{__install} -p -D %{_sourcedir}/ast-agent.jar %{buildroot}%{_prefix}/libs/ast-agent.jar
 %{__install} -p -D %{_sourcedir}/ast-http-client.jar %{buildroot}%{_prefix}/libs/ast-http-client.jar
