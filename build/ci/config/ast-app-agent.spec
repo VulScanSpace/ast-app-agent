@@ -18,7 +18,8 @@ Source2: 	ast-http-client.jar
 Source3: 	ast-iast-engine.jar
 Source4: 	ast-rasp-engine.jar
 Source5: 	ast-servlet.jar
-Source5: 	ast-spy.jar
+Source6: 	ast-spy.jar
+Source7: 	jattach-linux
 
 %description
 ast-app-agent is a agent of ast-app, used to monitor linux machine、install iast/sca/rasp to java process and upload report.
