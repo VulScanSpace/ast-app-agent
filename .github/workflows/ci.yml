@@ -51,16 +51,14 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
+      - name: Checkout ast-app-agent Repository
         uses: actions/checkout@v3
 
       - name: Build Ast App
         run: |
-          echo "current dir: $(pwd)"
-          ls
-          bash /home/runner/work/ast-app-agent/ast-app-agentbuild/ci/scripts/ci.sh astApp
+          bash /home/runner/work/ast-app-agent/ast-app-agent/build/ci/scripts/ci.sh astApp
 
-      - name: Checkout Repository
+      - name: Checkout Ast-Framework Repository
         uses: actions/checkout@v3
         with:
           repository: "VulScanSpace/AST-Framework"
@@ -68,11 +66,10 @@ jobs:
 
       - name: Build Ast Framework
         run: |
-          echo "current dir: $(pwd)"
           bash /home/runner/work/ast-app-agent/ast-app-agent/build/ci/scripts/ci.sh astFramework
           ls libs
-          
-      - name: Build Ast RPM
+
+      - name: Build Ast-Agent RPM
         run: |
           echo "current dir: $(pwd)"
           ls
