@@ -74,7 +74,7 @@ jobs:
       - name: Build Ast-Agent RPM
         run: |
           echo "current dir: $(pwd)"
-          yum -y install rpmdevtools
+          sudo apt-get install rpm
           mkdir -p {BUILD,RPMS,SOURCES,SPECS,SRPMS}
           cp /tmp/ast-app-agent SOURCES
           cp /tmp/*.jar SOURCES
