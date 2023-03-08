@@ -58,7 +58,7 @@ jobs:
         run: |
           echo "current dir: $(pwd)"
           ls
-          bash build/ci/scripts/ci.sh astApp
+          bash /home/runner/work/ast-app-agent/ast-app-agentbuild/ci/scripts/ci.sh astApp
 
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -69,14 +69,14 @@ jobs:
       - name: Build Ast Framework
         run: |
           echo "current dir: $(pwd)"
-          ls
-          bash build/ci/scripts/ci.sh astFramework
+          bash /home/runner/work/ast-app-agent/ast-app-agent/build/ci/scripts/ci.sh astFramework
+          ls libs
           
       - name: Build Ast RPM
         run: |
           echo "current dir: $(pwd)"
           ls
-          bash build/ci/scripts/ci.sh rpm
+          bash /home/runner/work/ast-app-agent/ast-app-agentbuild/ci/scripts/ci.sh rpm
 
       - name: Build RPM
         uses: naveenrajm7/rpmbuild@master
