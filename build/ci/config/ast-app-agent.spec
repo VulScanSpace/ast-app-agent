@@ -76,17 +76,17 @@ rm -rf %{_prefix}
 rm -rf $RPM_BUILD_DIR/%{name}-%{version}
 
 %files
-%dir %{_prefix}/
-%dir %{_prefix}/bin
-%dir %{_prefix}/libs
-%{_prefix}/bin/ast-app-agent
-%{_prefix}/bin/jattach
-%{_prefix}/libs/ast-agent.jar
-%{_prefix}/libs/ast-spy.jar
-%{_prefix}/libs/ast-servlet.jar
-%{_prefix}/libs/ast-http-client.jar
-%{_prefix}/libs/iast-engine.jar
-%{_prefix}/libs/rasp-engine.jar
+%dir %{buildroot}/
+%dir %{buildroot}/bin
+%dir %{buildroot}/libs
+%{buildroot}/bin/ast-app-agent
+%{buildroot}/bin/jattach
+%{buildroot}/libs/ast-agent.jar
+%{buildroot}/libs/ast-spy.jar
+%{buildroot}/libs/ast-servlet.jar
+%{buildroot}/libs/ast-http-client.jar
+%{buildroot}/libs/iast-engine.jar
+%{buildroot}/libs/rasp-engine.jar
 
 %changelog
 * Mon Mar 20 2023 owefsad <owefsad@gmail.com>
