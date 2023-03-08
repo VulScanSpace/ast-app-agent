@@ -39,6 +39,7 @@ cp /tmp/ast-iast-engine.jar %{_sourcedir}
 cp /tmp/ast-rasp-engine.jar %{_sourcedir}
 cp /tmp/ast-servlet.jar %{_sourcedir}
 cp /tmp/ast-spy.jar %{_sourcedir}
+ls -l %{_sourcedir}
 
 # 安装步骤,此时需要指定安装路径，创建编译时自动生成目录，复制配置文件至所对应的目录中
 %install

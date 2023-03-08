@@ -20,6 +20,7 @@ on:
   pull_request:
     paths-ignore:
       - '.github/**'
+      - 'build/**'
       - '**.yml'
       - '**.xml'
       - 'LICENSE'
@@ -30,6 +31,7 @@ on:
   push:
     paths-ignore:
       - '.github/**'
+      - 'build/**'
       - '**.yml'
       - '**.xml'
       - 'LICENSE'
