@@ -82,4 +82,3 @@ jobs:
         uses: naveenrajm7/rpmbuild@master
         with:
           spec_file: "build/ci/config/ast-app-agent.spec"
-
