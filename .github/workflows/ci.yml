@@ -51,14 +51,6 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout ast-app-agent Repository
-        uses: actions/checkout@v3
-
-      - name: Build Ast App
-        run: |
-          make build
-          cp build/ci/bin/ast-app-agent /tmp/ast-app-agent
-
       - name: Checkout Ast-Framework Repository
         uses: actions/checkout@v3
         with:
@@ -71,7 +63,22 @@ jobs:
           cp libs/* /tmp/
           ls /tmp
 
+      - name: Checkout ast-app-agent Repository
+        uses: actions/checkout@v3
+
+      - name: Build Ast App
+        run: |
+          make build
+          cp build/ci/bin/ast-app-agent /tmp/ast-app-agent
+
       - name: Build Ast-Agent RPM
         run: |
           echo "current dir: $(pwd)"
-          ls /tmp
+          yum -y install rpmdevtools
+          mkdir -p {BUILD,RPMS,SOURCES,SPECS,SRPMS}
+          cp /tmp/ast-app-agent SOURCES
+          cp /tmp/*.jar SOURCES
+          curl -sL -o "SOURCES/jattach-linux" "https://github.com/jattach/jattach/releases/download/$(curl -sL "https://api.github.com/repos/jattach/jattach/releases/latest" | grep -E 'tag_name\": \"' | head -n 1 | tr -d 'tag_name\": ' | tr -d ',')/jattach"
+          cp build/ci/config/ast-app-agent.spec SPECS/
+          ls SOURCES
+          rpmbuild -ba SPECS/ast-app-agent.spec

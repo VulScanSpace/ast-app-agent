@@ -9,9 +9,16 @@ Version:    0.1.0
 Release: 	1
 Summary:    ast-app-agent is a agent of ast-app, used to monitor linux machine、install iast/sca/rasp to java process and upload report
 License: 	AGPL-3.0 license
-Source0: 	%{name}-%{version}
 URL: http://www.ast-app.com
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+Source0: 	ast-app-agent
+Source1: 	ast-agent.jar
+Source2: 	ast-http-client.jar
+Source3: 	ast-iast-engine.jar
+Source4: 	ast-rasp-engine.jar
+Source5: 	ast-servlet.jar
+Source5: 	ast-spy.jar
 
 %description
 ast-app-agent is a agent of ast-app, used to monitor linux machine、install iast/sca/rasp to java process and upload report.
