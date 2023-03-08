@@ -45,14 +45,14 @@ ls -l %{_sourcedir}
 %install
 stat %{_sourcedir}
 ls -l %{_sourcedir}
-%{__install} -p -D -m 0755 %{_sourcedir}/ast-app-agent %{buildroot}/%{_prefix}/bin/ast-app-agent
-%{__install} -p -D -m 0755 %{_sourcedir}/jattach %{buildroot}/%{_prefix}/bin/jattach
-%{__install} -p -D %{_sourcedir}/ast-agent.jar %{buildroot}/%{_prefix}/libs/ast-agent.jar
-%{__install} -p -D %{_sourcedir}/ast-http-client.jar %{buildroot}/%{_prefix}/libs/ast-http-client.jar
-%{__install} -p -D %{_sourcedir}/ast-iast-engine.jar %{buildroot}/%{_prefix}/libs/ast-iast-engine.jar
-%{__install} -p -D %{_sourcedir}/ast-rasp-engine.jar %{buildroot}/%{_prefix}/libs/ast-rasp-engine.jar
-%{__install} -p -D %{_sourcedir}/ast-servlet.jar %{buildroot}/%{_prefix}/libs/ast-servlet.jar
-%{__install} -p -D %{_sourcedir}/ast-spy.jar %{buildroot}/%{_prefix}/libs/ast-spy.jar
+%{__install} -p -D -m 0755 %{_sourcedir}/ast-app-agent %{buildroot}%{_prefix}/bin/ast-app-agent
+%{__install} -p -D -m 0755 %{_sourcedir}/jattach %{buildroot}%{_prefix}/bin/jattach
+%{__install} -p -D %{_sourcedir}/ast-agent.jar %{buildroot}%{_prefix}/libs/ast-agent.jar
+%{__install} -p -D %{_sourcedir}/ast-http-client.jar %{buildroot}%{_prefix}/libs/ast-http-client.jar
+%{__install} -p -D %{_sourcedir}/ast-iast-engine.jar %{buildroot}%{_prefix}/libs/ast-iast-engine.jar
+%{__install} -p -D %{_sourcedir}/ast-rasp-engine.jar %{buildroot}%{_prefix}/libs/ast-rasp-engine.jar
+%{__install} -p -D %{_sourcedir}/ast-servlet.jar %{buildroot}%{_prefix}/libs/ast-servlet.jar
+%{__install} -p -D %{_sourcedir}/ast-spy.jar %{buildroot}%{_prefix}/libs/ast-spy.jar
 
 # 安装前需要做的任务，如：创建用户
 %pre
